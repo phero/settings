@@ -156,6 +156,7 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'phero/vim-hybrid'
+NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 
 "--------------------------------------------------------------------------------------------------
 "   unite.vimの設定
@@ -175,6 +176,13 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 "   indentLineの設定
 let g:indentLine_color_term = 236
 "--------------------------------------------------------------------------------------------------
+
+"--------------------------------------------------------------------------------------------------
+"   gist-vimの設定
+"--------------------------------------------------------------------------------------------------
+let g:gist_open_browser_after_post = 1
+let g:gist_show_privates = 1
+let g:gist_post_private = 1
 
 call neobundle#end()
 
