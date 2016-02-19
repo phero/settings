@@ -138,6 +138,11 @@ if has('syntax')
     call ZenkakuSpace()
 endif
 
+autocmd QuickFixCmdPost *grep* cwindow
+noremap <Space>g :exec ":vimgrep! " . input("word? ") . " `git ls-files`"<CR>
+noremap <Space>w :vimgrep! <cword> `git ls-files`<CR>
+noremap <Space>a :exec ":vimgrep! " . input("word? where? ")<CR>
+
 "--------------------------------------------------------------------------------------------------
 "   NeoBundle
 
