@@ -11,10 +11,11 @@ filetype plugin indent off
 
 set clipboard=autoselect
 set encoding=utf-8
+set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
 nnoremap <C-H> :%y<CR>
 
 let fftable={'dos': 'CRLF', 'unix': 'LF', 'mac': 'CR'}
-set statusline=%F%m%r%h%w\%=[type=%Y]\[fenc=%{&fileencoding}]\[enc=%{&encoding}]\[%{fftable[&ff]}]\[L.%l/%L]\[C.%v]
+set statusline=%f%m%r%h%w\%=type=%Y\|fenc=%{&fileencoding}\|enc=%{&encoding}\|%{fftable[&ff]}\|%l/%L-%v
 set laststatus=2
 
 set t_Co=256
