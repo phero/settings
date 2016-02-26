@@ -163,6 +163,7 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'phero/vim-hybrid'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
+NeoBundle 'tpope/vim-fugitive'
 
 "--------------------------------------------------------------------------------------------------
 "   unite.vimの設定
