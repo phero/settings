@@ -82,7 +82,7 @@ alias ka='git add'
 alias kap='git add -p'
 alias kb='git branch'
 alias kg='git log --graph --oneline'
-export PATH=${PATH}:/usr/share/doc/git/contrib/diff-highlight/
+export PATH=${PATH}:/usr/share/doc/git/contrib/diff-highlight
 
 # utility
 alias utf8='find . -type f | grep -vE "\.pyc$" | xargs nkf --guess | grep -vE "(UTF-8 \(LF\)|BINARY|ASCII \(LF\)|ASCII)"'
