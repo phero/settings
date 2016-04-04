@@ -64,6 +64,8 @@ autocmd FileType python setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
 autocmd FileType cs setl smartindent cinwords=if,else,for,while,try,except,catch,class
 autocmd FileType cs setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
+autocmd FileType markdown setl tabstop=2 expandtab shiftwidth=2 softtabstop=2
+
 function! s:ExecPython()
     if g:ostype == 'Windows'
         let src = tempname()
