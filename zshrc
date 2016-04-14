@@ -10,7 +10,7 @@ bindkey -e
 
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/kawasaki/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -90,4 +90,4 @@ alias drmi="docker images | sed '1,1 d' | perl -anle 'print $F[2]' | xargs docke
 
 # utility
 alias utf8='find . -type f | grep -vE "\.pyc$" | xargs nkf --guess | grep -vE "(UTF-8 \(LF\)|BINARY|ASCII \(LF\)|ASCII)"'
-export PATH=${PATH}:/home/kawasaki/tools/linux-tools/bin/
+export PATH=${PATH}:~/tools/linux-tools/bin/
