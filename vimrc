@@ -111,6 +111,28 @@ function! s:ExecPyPy()
 command! ExecPyPy call <SID>ExecPyPy()
 map <silent> <C-P> :call <SID>ExecPyPy()<CR>
 
+function! s:ExecRuby()
+    if g:ostype == 'Windows'
+        let src = tempname()
+        let dst = "Ruby Output"
+        silent execute ":w " . src
+        silent execute ":pedit! " . dst
+        wincmd P
+        setlocal buftype=nofile
+        setlocal noswapfile
+        setlocal syntax=none
+        setlocal bufhidden=delete
+        silent execute ":%! ruby " . src . " 2>&1"
+        silent execute ":!rm " . src
+        echo src
+        wincmd p
+    else
+        exe "!time ruby %"
+    endif
+:endfunction
+command! ExecRuby call <SID>ExecRuby()
+map <silent> <C-B> :call <SID>ExecRuby()<CR>
+
 autocmd FileType haskell setl autoindent
 autocmd FileType haskell setl smartindent cinwords=where
 autocmd FileType haskell setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
