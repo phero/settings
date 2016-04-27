@@ -5,7 +5,7 @@
     st = status
 
 [core]
-    excludesfile = /home/kawasaki/.gitignore
+    excludesfile = ~/.gitignore
     editor = vim
 
 [color]
