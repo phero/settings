@@ -59,6 +59,7 @@ if [ -x /usr/bin/dircolors ]; then
        alias grep='grep --color=auto'
 fi
 
+alias d='pwd -P'
 alias l='ls -h'
 alias ll='ls -lh'
 alias lla='ls -alFh'
