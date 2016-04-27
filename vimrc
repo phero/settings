@@ -229,3 +229,32 @@ filetype plugin on
 
 colorscheme hybrid
 set background=dark
+
+"--------------------------------------------------------------------------------------------------
+"   Vimscript
+"--------------------------------------------------------------------------------------------------
+
+function! HankakuNumber() range
+    python << END
+# coding=utf-8
+import vim
+buf = vim.current.buffer
+lineid1, col1 = buf.mark('<')
+lineid2, col2 = buf.mark('>')
+lineid1 -= 1
+lineid2 -= 1
+current_lineid, current_col = vim.current.window.cursor
+current_lineid -= 1
+if (current_lineid, current_col) != (lineid1, col1):
+    lineid1 = lineid2 = current_lineid
+
+for lineid in xrange(lineid1, lineid2 + 1):
+    line = buf[lineid]
+    u = line.decode('utf-8')
+    for i in xrange(10):
+        u = u.replace(unichr(ord(u'０') + i), unichr(ord(u'0') + i))
+    buf[lineid] = u
+END
+endfunction
+vnoremap <Space>0 :call HankakuNumber()<CR>
+nnoremap <Space>0 :call HankakuNumber()<CR>
