@@ -87,7 +87,7 @@ export PATH=${PATH}:/usr/share/doc/git/contrib/diff-highlight
 
 # for Docker
 alias drm="docker ps -as | sed '1,1 d' | cut -d ' ' -f 1 | xargs docker rm"
-alias drmi="docker images | sed '1,1 d' | perl -anle 'print $F[2]' | xargs docker rmi"
+alias drmi="docker images | sed '1,1 d' | perl -anle 'print \$F[2]' | xargs docker rmi"
 
 # utility
 alias utf8='find . -type f | grep -vE "\.pyc$" | xargs nkf --guess | grep -vE "(UTF-8 \(LF\)|BINARY|ASCII \(LF\)|ASCII)"'
