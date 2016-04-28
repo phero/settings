@@ -258,3 +258,36 @@ END
 endfunction
 vnoremap <Space>0 :call HankakuNumber()<CR>
 nnoremap <Space>0 :call HankakuNumber()<CR>
+
+function! KanjiToNumber() range
+    python << END
+# coding=utf-8
+import vim
+buf = vim.current.buffer
+lineid1, col1 = buf.mark('<')
+lineid2, col2 = buf.mark('>')
+lineid1 -= 1
+lineid2 -= 1
+current_lineid, current_col = vim.current.window.cursor
+current_lineid -= 1
+if (current_lineid, current_col) != (lineid1, col1):
+    lineid1 = lineid2 = current_lineid
+
+for lineid in xrange(lineid1, lineid2 + 1):
+    line = buf[lineid]
+    u = line.decode('utf-8')
+    u = u.replace(u'〇', u'0')
+    u = u.replace(u'一', u'1')
+    u = u.replace(u'二', u'2')
+    u = u.replace(u'三', u'3')
+    u = u.replace(u'四', u'4')
+    u = u.replace(u'五', u'5')
+    u = u.replace(u'六', u'6')
+    u = u.replace(u'七', u'7')
+    u = u.replace(u'八', u'8')
+    u = u.replace(u'九', u'9')
+    buf[lineid] = u
+END
+endfunction
+vnoremap <Space>9 :call KanjiToNumber()<CR>
+nnoremap <Space>9 :call KanjiToNumber()<CR>
