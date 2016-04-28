@@ -239,8 +239,8 @@ function! HankakuNumber() range
 # coding=utf-8
 import vim
 buf = vim.current.buffer
-lineid1, col1 = buf.mark('<')
-lineid2, col2 = buf.mark('>')
+lineid1, col1 = buf.mark('<') or vim.current.window.cursor
+lineid2, col2 = buf.mark('>') or vim.current.window.cursor
 lineid1 -= 1
 lineid2 -= 1
 current_lineid, current_col = vim.current.window.cursor
@@ -264,8 +264,8 @@ function! KanjiToNumber() range
 # coding=utf-8
 import vim
 buf = vim.current.buffer
-lineid1, col1 = buf.mark('<')
-lineid2, col2 = buf.mark('>')
+lineid1, col1 = buf.mark('<') or vim.current.window.cursor
+lineid2, col2 = buf.mark('>') or vim.current.window.cursor
 lineid1 -= 1
 lineid2 -= 1
 current_lineid, current_col = vim.current.window.cursor
