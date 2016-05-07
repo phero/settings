@@ -92,3 +92,19 @@ alias drmi="docker images | sed '1,1 d' | perl -anle 'print \$F[2]' | xargs dock
 # utility
 alias utf8='find . -type f | grep -vE "\.pyc$" | xargs nkf --guess | grep -vE "(UTF-8 \(LF\)|BINARY|ASCII \(LF\)|ASCII)"'
 export PATH=${PATH}:~/tools/linux-tools/bin/
+
+#
+#       Keymap
+#
+
+#   Requires:
+#       % grep -n kawasaki /usr/share/X11/xkb/rules/evdev
+#       1101:  kawasaki:keymap = +kawasaki(keymap)
+#       % cat /usr/share/X11/xkb/symbols/kawasaki
+#       partial hidden modifier_keys
+#       xkb_symbols "keymap" {
+#           key <HENK> { [ Escape ] };
+#       };
+#
+#       cf. http://qiita.com/oyas/items/a39baab89908294516a7
+setxkbmap -option kawasaki:keymap
