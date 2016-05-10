@@ -1,0 +1,3 @@
+xkb_symbols "henkankeys" {
+  key <HENK> { [ Escape ] };
+};
