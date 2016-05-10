@@ -95,16 +95,6 @@ export PATH=${PATH}:~/tools/linux-tools/bin/
 
 #
 #       Keymap
+#       cf. http://did2memo.net/2015/07/20/ubuntu-xkb-muhenkan-hotkey/
 #
-
-#   Requires:
-#       % grep -n kawasaki /usr/share/X11/xkb/rules/evdev
-#       1101:  kawasaki:keymap = +kawasaki(keymap)
-#       % cat /usr/share/X11/xkb/symbols/kawasaki
-#       partial hidden modifier_keys
-#       xkb_symbols "keymap" {
-#           key <HENK> { [ Escape ] };
-#       };
-#
-#       cf. http://qiita.com/oyas/items/a39baab89908294516a7
-setxkbmap -option kawasaki:keymap
+xkbcomp -I${HOME}/.xkb/ ${HOME}/.xkb/keymap/mykbd ${DISPLAY} > /dev/null 2>&1
