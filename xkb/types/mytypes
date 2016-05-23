@@ -2,7 +2,7 @@ xkb_types "muhenkan" {
   type "MUHENKAN" {
     modifiers = Shift+Control+Mod5;
     map[Shift] = Level2;
-    map[Control] = Level3;
+    map[Control] = Level1;
     map[Mod5] = Level4;
     map[Mod5+Control] = Level4;
     map[Mod5+Shift] = Level4;
