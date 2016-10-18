@@ -44,6 +44,7 @@ nnoremap k gk
 vnoremap v $h
 nnoremap <Tab> %
 vnoremap <Tab> %
+vnoremap * "zy:let @/ = @z<CR>n
 set clipboard+=unnamed
 set clipboard+=unnamedplus
 
