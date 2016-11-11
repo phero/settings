@@ -191,6 +191,7 @@ NeoBundle 'phero/vim-hybrid'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'nvie/vim-flake8', {'autoload': {'filetypes': ['python']}}
+NeoBundle 'tomtom/tcomment_vim'
 
 "--------------------------------------------------------------------------------------------------
 "   unite.vimの設定
@@ -222,6 +223,12 @@ let g:gist_post_private = 1
 "   vim-flake8の設定
 "--------------------------------------------------------------------------------------------------
 noremap <C-K> :call Flake8()<CR>
+
+"--------------------------------------------------------------------------------------------------
+"   tcommentの設定
+"--------------------------------------------------------------------------------------------------
+let g:tcommentMapLeaderOp1 = 't'
+
 
 call neobundle#end()
 
