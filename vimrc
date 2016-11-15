@@ -148,7 +148,7 @@ autocmd FileType java setl smartindent autoindent
 autocmd FileType css setl autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType html set autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType htmldjango set autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType xml set autoindent tabstop=4
+autocmd FileType xml set autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType javascript set autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType sh set autoindent tabstop=4 shiftwidth=4 softtabstop=4
 
