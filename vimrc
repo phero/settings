@@ -192,11 +192,12 @@ NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'nvie/vim-flake8', {'autoload': {'filetypes': ['python']}}
 NeoBundle 'tomtom/tcomment_vim'
+NeoBundle "ctrlpvim/ctrlp.vim"
 
 "--------------------------------------------------------------------------------------------------
 "   unite.vimの設定
 "   cf. http://qiita.com/jnchito/items/5141b3b01bced9f7f48f
-noremap <C-N> :Unite -buffer-name=file file<CR>
+"noremap <C-N> :Unite -buffer-name=file file<CR>
 noremap <C-L> :Unite file_mru<CR>
 noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
 au FileType unite nnoremap <silent> <buffer> <expr> <C-H> unite#do_action('split')
@@ -228,6 +229,11 @@ noremap <C-K> :call Flake8()<CR>
 "   tcommentの設定
 "--------------------------------------------------------------------------------------------------
 let g:tcommentMapLeaderOp1 = 't'
+
+"--------------------------------------------------------------------------------------------------
+"   ctrlpvimの設定
+"--------------------------------------------------------------------------------------------------
+let g:ctrlp_map = '<C-N>'
 
 
 call neobundle#end()
