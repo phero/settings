@@ -249,8 +249,7 @@ set background=dark
 "--------------------------------------------------------------------------------------------------
 
 function! HankakuNumber() range
-    python << END
-# coding=utf-8
+    python3 << END
 import vim
 buf = vim.current.buffer
 lineid1, col1 = buf.mark('<') or vim.current.window.cursor
@@ -262,20 +261,18 @@ current_lineid -= 1
 if (current_lineid, current_col) != (lineid1, col1):
     lineid1 = lineid2 = current_lineid
 
-for lineid in xrange(lineid1, lineid2 + 1):
+for lineid in range(lineid1, lineid2 + 1):
     line = buf[lineid]
-    u = line.decode('utf-8')
-    for i in xrange(10):
-        u = u.replace(unichr(ord(u'０') + i), unichr(ord(u'0') + i))
-    buf[lineid] = u
+    for i in range(10):
+        line = line.replace(chr(ord('０') + i), chr(ord('0') + i))
+    buf[lineid] = line
 END
 endfunction
 vnoremap <Space>0 :call HankakuNumber()<CR>
 nnoremap <Space>0 :call HankakuNumber()<CR>
 
 function! KanjiToNumber() range
-    python << END
-# coding=utf-8
+    python3 << END
 import vim
 buf = vim.current.buffer
 lineid1, col1 = buf.mark('<') or vim.current.window.cursor
@@ -287,20 +284,19 @@ current_lineid -= 1
 if (current_lineid, current_col) != (lineid1, col1):
     lineid1 = lineid2 = current_lineid
 
-for lineid in xrange(lineid1, lineid2 + 1):
+for lineid in range(lineid1, lineid2 + 1):
     line = buf[lineid]
-    u = line.decode('utf-8')
-    u = u.replace(u'〇', u'0')
-    u = u.replace(u'一', u'1')
-    u = u.replace(u'二', u'2')
-    u = u.replace(u'三', u'3')
-    u = u.replace(u'四', u'4')
-    u = u.replace(u'五', u'5')
-    u = u.replace(u'六', u'6')
-    u = u.replace(u'七', u'7')
-    u = u.replace(u'八', u'8')
-    u = u.replace(u'九', u'9')
-    buf[lineid] = u
+    line = line.replace('〇', '0')
+    line = line.replace('一', '1')
+    line = line.replace('二', '2')
+    line = line.replace('三', '3')
+    line = line.replace('四', '4')
+    line = line.replace('五', '5')
+    line = line.replace('六', '6')
+    line = line.replace('七', '7')
+    line = line.replace('八', '8')
+    line = line.replace('九', '9')
+    buf[lineid] = line
 END
 endfunction
 vnoremap <Space>9 :call KanjiToNumber()<CR>
