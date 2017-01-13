@@ -248,56 +248,192 @@ set background=dark
 "   Vimscript
 "--------------------------------------------------------------------------------------------------
 
-function! HankakuNumber() range
+"--------------------------
+"   全角数字を半角に変換
+"--------------------------
+function! HankakuNumberV() range
     python3 << END
 import vim
-buf = vim.current.buffer
-lineid1, col1 = buf.mark('<') or vim.current.window.cursor
-lineid2, col2 = buf.mark('>') or vim.current.window.cursor
-lineid1 -= 1
-lineid2 -= 1
-current_lineid, current_col = vim.current.window.cursor
-current_lineid -= 1
-if (current_lineid, current_col) != (lineid1, col1):
-    lineid1 = lineid2 = current_lineid
 
-for lineid in range(lineid1, lineid2 + 1):
-    line = buf[lineid]
+
+def handle(text):
     for i in range(10):
-        line = line.replace(chr(ord('０') + i), chr(ord('0') + i))
-    buf[lineid] = line
+        text = text.replace(chr(ord('０') + i), chr(ord('0') + i))
+    return text
+
+buf = vim.current.buffer
+l1, c1 = buf.mark('<')
+l2, c2 = buf.mark('>')
+l1 -= 1
+l2 -= 1
+
+if l1 != l2:
+    s1 = buf[l1].encode('utf-8')[c1:].decode('utf-8')
+    for w2 in range(1, 5):
+        try:
+            s2 = buf[l2].encode('utf-8')[:c2 + w2].decode('utf-8')
+        except UnicodeError:
+            continue
+        break
+    s1 = handle(s1)
+    s2 = handle(s2)
+    buf[l1] = ''.join([buf[l1].encode('utf-8')[:c1].decode('utf-8'), s1])
+    buf[l2] = ''.join([s2, buf[l2].encode('utf-8')[c2 + w2:].decode('utf-8')])
+else:
+    for w in range(1, 5):
+        try:
+            s = buf[l1].encode('utf-8')[c1:c2 + w].decode('utf-8')
+        except UnicodeError:
+            continue
+        break
+    s = handle(s)
+    buf[l1] = ''.join([
+        buf[l1].encode('utf-8')[:c1].decode('utf-8'),
+        s,
+        buf[l1].encode('utf-8')[c2 + w:].decode('utf-8'),
+    ])
+
+for l in range(l1 + 1, l2):
+    buf[l] = handle(buf[l])
 END
 endfunction
-vnoremap <Space>0 :call HankakuNumber()<CR>
-nnoremap <Space>0 :call HankakuNumber()<CR>
 
-function! KanjiToNumber() range
+function! HankakuNumberN()
     python3 << END
 import vim
 buf = vim.current.buffer
-lineid1, col1 = buf.mark('<') or vim.current.window.cursor
-lineid2, col2 = buf.mark('>') or vim.current.window.cursor
-lineid1 -= 1
-lineid2 -= 1
-current_lineid, current_col = vim.current.window.cursor
-current_lineid -= 1
-if (current_lineid, current_col) != (lineid1, col1):
-    lineid1 = lineid2 = current_lineid
-
-for lineid in range(lineid1, lineid2 + 1):
-    line = buf[lineid]
-    line = line.replace('〇', '0')
-    line = line.replace('一', '1')
-    line = line.replace('二', '2')
-    line = line.replace('三', '3')
-    line = line.replace('四', '4')
-    line = line.replace('五', '5')
-    line = line.replace('六', '6')
-    line = line.replace('七', '7')
-    line = line.replace('八', '8')
-    line = line.replace('九', '9')
-    buf[lineid] = line
+l, c = vim.current.window.cursor
+l -= 1
+line = buf[l]
+for i in range(10):
+    line = line.replace(chr(ord('０') + i), chr(ord('0') + i))
+buf[l] = line
 END
 endfunction
-vnoremap <Space>9 :call KanjiToNumber()<CR>
-nnoremap <Space>9 :call KanjiToNumber()<CR>
+
+vnoremap <Space>0 :call HankakuNumberV()<CR>
+nnoremap <Space>0 :call HankakuNumberN()<CR>
+
+"----------------------------
+"   漢数字を半角数値に変換
+"----------------------------
+function! KanjiToNumberV() range
+    python3 << END
+import vim
+
+
+def handle(text):
+    text = text.replace('〇', '0')
+    text = text.replace('一', '1')
+    text = text.replace('二', '2')
+    text = text.replace('三', '3')
+    text = text.replace('四', '4')
+    text = text.replace('五', '5')
+    text = text.replace('六', '6')
+    text = text.replace('七', '7')
+    text = text.replace('八', '8')
+    text = text.replace('九', '9')
+    return text
+
+buf = vim.current.buffer
+l1, c1 = buf.mark('<')
+l2, c2 = buf.mark('>')
+l1 -= 1
+l2 -= 1
+
+if l1 != l2:
+    s1 = buf[l1].encode('utf-8')[c1:].decode('utf-8')
+    for w2 in range(1, 5):
+        try:
+            s2 = buf[l2].encode('utf-8')[:c2 + w2].decode('utf-8')
+        except UnicodeError:
+            continue
+        break
+    s1 = handle(s1)
+    s2 = handle(s2)
+    buf[l1] = ''.join([buf[l1].encode('utf-8')[:c1].decode('utf-8'), s1])
+    buf[l2] = ''.join([s2, buf[l2].encode('utf-8')[c2 + w2:].decode('utf-8')])
+else:
+    for w in range(1, 5):
+        try:
+            s = buf[l1].encode('utf-8')[c1:c2 + w].decode('utf-8')
+        except UnicodeError:
+            continue
+        break
+    s = handle(s)
+    buf[l1] = ''.join([
+        buf[l1].encode('utf-8')[:c1].decode('utf-8'),
+        s,
+        buf[l1].encode('utf-8')[c2 + w:].decode('utf-8'),
+    ])
+
+for l in range(l1 + 1, l2):
+    buf[l] = handle(buf[l])
+END
+endfunction
+
+function! KanjiToNumberN()
+    python3 << END
+import vim
+buf = vim.current.buffer
+l, c = vim.current.window.cursor
+l -= 1
+line = buf[l]
+line = line.replace('〇', '0')
+line = line.replace('一', '1')
+line = line.replace('二', '2')
+line = line.replace('三', '3')
+line = line.replace('四', '4')
+line = line.replace('五', '5')
+line = line.replace('六', '6')
+line = line.replace('七', '7')
+line = line.replace('八', '8')
+line = line.replace('九', '9')
+buf[l] = line
+END
+endfunction
+
+vnoremap <Space>9 :call KanjiToNumberV()<CR>
+nnoremap <Space>9 :call KanjiToNumberN()<CR>
+
+"----------------------------------------------------------
+"   Jinja2テンプレート用に選択範囲を{{ _('...') }}で括る
+"----------------------------------------------------------
+function! Jinja2MarkTranslationV() range
+    python3 << END
+import vim
+buf = vim.current.buffer
+l1, c1 = buf.mark('<')
+l2, c2 = buf.mark('>')
+l1 -= 1
+l2 -= 1
+for w2 in range(1, 5):
+    try:
+        buf[l2].encode('utf-8')[:c2 + w2].decode('utf-8')
+    except UnicodeError:
+        continue
+    break
+buf[l2] = "') }}".join([
+    buf[l2].encode('utf-8')[:c2 + w2].decode('utf-8'),
+    buf[l2].encode('utf-8')[c2 + w2:].decode('utf-8'),
+])
+buf[l1] = "{{ _('".join([
+    buf[l1].encode('utf-8')[:c1].decode('utf-8'),
+    buf[l1].encode('utf-8')[c1:].decode('utf-8'),
+])
+END
+endfunction
+
+function! Jinja2MarkTranslationN()
+    python3 << END
+
+import vim
+buf = vim.current.buffer
+l, c = vim.current.window.cursor
+l -= 1
+buf[l] = "{{ _('{}') }}".format(buf[l])
+END
+endfunction
+
+vnoremap _ :call Jinja2MarkTranslationV()<CR>
+nnoremap _ :call Jinja2MarkTranslationN()<CR>
