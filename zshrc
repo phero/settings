@@ -91,7 +91,7 @@ alias drmi="docker images | sed '1,1 d' | perl -anle 'print \$F[2]' | xargs dock
 
 # utility
 alias utf8='find . -type f | grep -vE "\.pyc$" | xargs nkf --guess | grep -vE "(UTF-8 \(LF\)|BINARY|ASCII \(LF\)|ASCII)"'
-export PATH=${PATH}:~/tools/linux-tools/bin/
+export PATH=${PATH}:~/tools/linux-tools/bin
 
 #
 #       Keymap
