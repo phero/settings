@@ -443,7 +443,7 @@ import vim
 buf = vim.current.buffer
 l, c = vim.current.window.cursor
 l -= 1
-buf[l] = "{{ _('{}') }}".format(buf[l])
+buf[l] = "{{{{ _('{}') }}}}".format(buf[l])
 END
 endfunction
 
