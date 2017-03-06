@@ -68,7 +68,7 @@ autocmd FileType cs setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
 autocmd FileType markdown setl tabstop=2 expandtab shiftwidth=2 softtabstop=2
 
-function! s:ExecPython()
+function! s:ExecPython2()
     if g:ostype == 'Windows'
         let src = tempname()
         let dst = "Python Output"
@@ -87,8 +87,15 @@ function! s:ExecPython()
         exe "!time python %"
     endif
 :endfunction
-command! ExecPython call <SID>ExecPython()
-map <silent> <C-J> :call <SID>ExecPython()<CR>
+
+function! s:ExecPython3()
+    if g:ostype != 'Windows'
+        exe "!time python3 %"
+    endif
+:endfunction
+
+map <silent> <C-J> :call <SID>ExecPython2()<CR>
+map <silent> <C-L> :call <SID>ExecPython3()<CR>
 
 function! s:ExecPyPy()
     if g:ostype == 'Windows'
@@ -199,7 +206,7 @@ NeoBundle "ctrlpvim/ctrlp.vim"
 "   unite.vimの設定
 "   cf. http://qiita.com/jnchito/items/5141b3b01bced9f7f48f
 "noremap <C-N> :Unite -buffer-name=file file<CR>
-noremap <C-L> :Unite file_mru<CR>
+noremap <C-L><C-L> :Unite file_mru<CR>
 noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
 au FileType unite nnoremap <silent> <buffer> <expr> <C-H> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-H> unite#do_action('split')
@@ -225,6 +232,7 @@ let g:gist_post_private = 1
 "   vim-flake8の設定
 "--------------------------------------------------------------------------------------------------
 noremap <C-K> :call Flake8()<CR>
+let g:flake8_show_in_file=1
 
 "--------------------------------------------------------------------------------------------------
 "   tcommentの設定
