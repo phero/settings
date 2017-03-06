@@ -243,6 +243,9 @@ let g:tcommentMapLeaderOp1 = 't'
 "   ctrlpvimの設定
 "--------------------------------------------------------------------------------------------------
 let g:ctrlp_map = '<C-N>'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '.*coverage.*',
+  \ }
 
 
 call neobundle#end()
