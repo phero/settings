@@ -1,2 +1,3 @@
 --ignore-file=is:tags
 --ignore-dir=is:migrations
+--ignore-dir=is:coverage-result
