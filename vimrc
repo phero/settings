@@ -43,6 +43,8 @@ nnoremap j gj
 nnoremap k gk
 vnoremap v $h
 vnoremap * "zy:let @/ = @z<CR>n
+nnoremap <C-I> <C-I>zz
+nnoremap <C-O> <C-O>zz
 set clipboard+=unnamed
 set clipboard+=unnamedplus
 
