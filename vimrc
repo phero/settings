@@ -206,7 +206,7 @@ NeoBundle "ctrlpvim/ctrlp.vim"
 "   unite.vimの設定
 "   cf. http://qiita.com/jnchito/items/5141b3b01bced9f7f48f
 "noremap <C-N> :Unite -buffer-name=file file<CR>
-noremap <C-L><C-L> :Unite file_mru<CR>
+noremap <C-@> :Unite file_mru<CR>
 noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
 au FileType unite nnoremap <silent> <buffer> <expr> <C-H> unite#do_action('split')
 au FileType unite inoremap <silent> <buffer> <expr> <C-H> unite#do_action('split')
