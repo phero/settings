@@ -21,7 +21,7 @@ autocmd FileType text setlocal textwidth=0
 if has('win32')
     au GUIEnter * simalt ~x
     set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
-    set guifont=Migu_1M:h12:cSHIFTJIS
+    set guifont=Ricty_Diminished:h18:cSHIFTJIS
     set directory=C:/tmp/
     set backupdir=C:/tmp/
     set mouse=
