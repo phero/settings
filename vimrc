@@ -33,12 +33,11 @@ set showmatch
 set matchtime=3
 set matchpairs& matchpairs+=<:>
 nmap <silent> <Esc><Esc> :nohlsearch<CR>
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap * *zz
-nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
+nnoremap zt zt10<C-y>
+nnoremap n nzt10<C-y>
+nnoremap N Nzt10<C-y>
+nnoremap * *zt10<C-y>
+nnoremap # #zt10<C-y>
 nnoremap j gj
 nnoremap k gk
 vnoremap v $h
@@ -68,89 +67,9 @@ autocmd FileType cs setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
 autocmd FileType markdown setl tabstop=2 expandtab shiftwidth=2 softtabstop=2
 
-function! s:ExecPython2()
-    if g:ostype == 'Windows'
-        let src = tempname()
-        let dst = "Python Output"
-        silent execute ":w " . src
-        silent execute ":pedit! " . dst
-        wincmd P
-        setlocal buftype=nofile
-        setlocal noswapfile
-        setlocal syntax=none
-        setlocal bufhidden=delete
-        silent execute ":%! python " . src . " 2>&1"
-        silent execute ":!rm " . src
-        echo src
-        wincmd p
-    else
-        exe "!time python %"
-    endif
-:endfunction
-
-function! s:ExecPython3()
-    if g:ostype != 'Windows'
-        exe "!time python3 %"
-    endif
-:endfunction
-
-map <silent> <C-J> :call <SID>ExecPython2()<CR>
-map <silent> <C-L> :call <SID>ExecPython3()<CR>
-
-function! s:ExecPyPy()
-    if g:ostype == 'Windows'
-        let src = tempname()
-        let dst = "PyPy Output"
-        silent execute ":w " . src
-        silent execute ":pedit! " . dst
-        wincmd P
-        setlocal buftype=nofile
-        setlocal noswapfile
-        setlocal syntax=none
-        setlocal bufhidden=delete
-        silent execute ":%! pypy " . src . " 2>&1"
-        silent execute ":!rm " . src
-        echo src
-        wincmd p
-    else
-        exe "!time pypy %"
-    endif
-:endfunction
-command! ExecPyPy call <SID>ExecPyPy()
-map <silent> <C-P> :call <SID>ExecPyPy()<CR>
-
-function! s:ExecRuby()
-    if g:ostype == 'Windows'
-        let src = tempname()
-        let dst = "Ruby Output"
-        silent execute ":w " . src
-        silent execute ":pedit! " . dst
-        wincmd P
-        setlocal buftype=nofile
-        setlocal noswapfile
-        setlocal syntax=none
-        setlocal bufhidden=delete
-        silent execute ":%! ruby " . src . " 2>&1"
-        silent execute ":!rm " . src
-        echo src
-        wincmd p
-    else
-        exe "!time ruby %"
-    endif
-:endfunction
-command! ExecRuby call <SID>ExecRuby()
-map <silent> <C-B> :call <SID>ExecRuby()<CR>
-
-autocmd FileType haskell setl autoindent
-autocmd FileType haskell setl smartindent cinwords=where
-autocmd FileType haskell setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
-
-autocmd FileType cpp setl smartindent cinwords=)
-autocmd FileType cpp setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
-autocmd FileType cpp setl colorcolumn=80
-
-autocmd FileType java setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
-autocmd FileType java setl smartindent autoindent
+noremap <C-P> :exec ":!time pypy3 %"<CR>
+noremap <C-J> :exec ":!time python %"<CR>
+noremap <Space>a :exec ":vimgrep! " . input("word? where? ")<CR>
 
 autocmd FileType css setl autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType less setl autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
@@ -244,9 +163,11 @@ let g:tcommentMapLeaderOp1 = 't'
 "--------------------------------------------------------------------------------------------------
 let g:ctrlp_map = '<C-N>'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '.*coverage.*',
+  \ 'dir':  '.*coverage.*,virtualenv',
   \ }
-
+nnoremap <C-N><C-N> :CtrlPMixed<CR>
+nnoremap <C-N><C-L> :CtrlPLine<CR>
+nnoremap <C-N><C-T> :CtrlPTag<CR>
 
 call neobundle#end()
 
