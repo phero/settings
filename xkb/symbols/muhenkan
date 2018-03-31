@@ -38,7 +38,7 @@ xkb_symbols "muhenkankeys" {
   key <AC08> { [ k, K, k, Up ] };
   key <AC09> { [ l, L, l, Right ] };
 //key <AC10> { [ semicolon, plus, semicolon, F2 ] };
-  key <AC11> { [ colon, asterisk, colon, Delete ] };
+  key <AC11> { [ colon, asterisk, colon ] };
 
 //key <AB01> { [ z, Z ] };
 //key <AB02> { [ x, X ] };
