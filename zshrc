@@ -36,7 +36,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31
 
 function _mssh (){
     if [ -f $HOME/.ssh/config ]; then
-        _values $( egrep "^Host" $HOME/.ssh/config | cut -d ' ' -f 2 )
+        _values '' $( egrep "^Host" $HOME/.ssh/config | cut -d ' ' -f 2 )
     fi
 }
 compdef _mssh mssh
