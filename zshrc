@@ -75,7 +75,7 @@ alias la='ls -Ah'
 alias L='less'
 alias crontab='crontab -i'
 alias ssh='ssh -A'
-alias less='/usr/share/vim/vim74/macros/less.sh'
+alias less='/usr/share/vim/vim81/macros/less.sh'
 alias ack='ack-grep --nosql'
 alias xi='xsel -i -b'
 alias xo='xsel -o -b'
@@ -90,18 +90,17 @@ alias ka='git add'
 alias kap='git add -p'
 alias kb='git branch'
 alias kg='git log --graph --oneline'
-export PATH=${PATH}:/usr/share/doc/git/contrib/diff-highlight
 
 # for Docker
-alias drm="docker ps -as | sed '1,1 d' | cut -d ' ' -f 1 | xargs docker rm"
-alias drmi="docker images | sed '1,1 d' | perl -anle 'print \$F[2]' | xargs docker rmi"
+# alias drm="docker ps -as | sed '1,1 d' | cut -d ' ' -f 1 | xargs docker rm"
+# alias drmi="docker images | sed '1,1 d' | perl -anle 'print \$F[2]' | xargs docker rmi"
 
 # utility
-alias utf8='find . -type f | grep -vE "\.pyc$" | xargs nkf --guess | grep -vE "(UTF-8 \(LF\)|BINARY|ASCII \(LF\)|ASCII)"'
+# alias utf8='find . -type f | grep -vE "\.pyc$" | xargs nkf --guess | grep -vE "(UTF-8 \(LF\)|BINARY|ASCII \(LF\)|ASCII)"'
 export PATH=${PATH}:~/tools/linux-tools/bin
 
 #
 #       Keymap
 #       cf. http://did2memo.net/2015/07/20/ubuntu-xkb-muhenkan-hotkey/
 #
-xkbcomp -I${HOME}/.xkb/ ${HOME}/.xkb/keymap/mykbd ${DISPLAY} > /dev/null 2>&1
+# xkbcomp -I${HOME}/.xkb/ ${HOME}/.xkb/keymap/mykbd ${DISPLAY} > /dev/null 2>&1
