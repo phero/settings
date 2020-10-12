@@ -58,6 +58,9 @@ set wildmode=list:longest,full
 set colorcolumn=100
 set cursorline
 
+"TabNine
+set rtp+=~/tools/tabnine-vim
+
 autocmd FileType python setl autoindent smartindent commentstring=#%s cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType python setl tabstop=4 expandtab shiftwidth=4 softtabstop=4
 "autocmd FileType python let g:pydiction_location = ~/.vim/pydiction/complete-dict
