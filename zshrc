@@ -98,6 +98,12 @@ alias kg='git log --graph --oneline'
 # alias utf8='find . -type f | grep -vE "\.pyc$" | xargs nkf --guess | grep -vE "(UTF-8 \(LF\)|BINARY|ASCII \(LF\)|ASCII)"'
 export PATH=${PATH}:~/tools/linux-tools/bin
 
+# pyenv
+export PYENV_ROOT="${HOME}/.pyenv"
+export PATH="${PYENV_ROOT}/bin:${PATH}"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 #
 #       Keymap
 #       cf. http://did2memo.net/2015/07/20/ubuntu-xkb-muhenkan-hotkey/
