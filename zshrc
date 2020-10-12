@@ -76,7 +76,6 @@ alias L='less'
 alias crontab='crontab -i'
 alias ssh='ssh -A'
 alias less='/usr/share/vim/vim81/macros/less.sh'
-alias ack='ack-grep --nosql'
 alias xi='xsel -i -b'
 alias xo='xsel -o -b'
 
