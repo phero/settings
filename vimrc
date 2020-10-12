@@ -73,6 +73,7 @@ autocmd FileType markdown setl tabstop=2 expandtab shiftwidth=2 softtabstop=2
 noremap <C-P> :exec ":!time pypy3 %"<CR>
 noremap <C-J> :exec ":!time python %"<CR>
 noremap <Space>a :exec ":vimgrep! " . input("word? where? ")<CR>
+noremap <C-I> :exec ":Gista list"<CR>
 
 autocmd FileType css setl autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType less setl autoindent expandtab tabstop=2 shiftwidth=2 softtabstop=2
@@ -118,7 +119,7 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'phero/vim-hybrid'
-NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
+NeoBundle 'lambdalisue/vim-gista'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'nvie/vim-flake8', {'autoload': {'filetypes': ['python']}}
 NeoBundle 'tomtom/tcomment_vim'
@@ -144,11 +145,9 @@ let g:indentLine_color_term = 236
 "--------------------------------------------------------------------------------------------------
 
 "--------------------------------------------------------------------------------------------------
-"   gist-vimの設定
+"   vim-gistaの設定
 "--------------------------------------------------------------------------------------------------
-let g:gist_open_browser_after_post = 1
-let g:gist_show_privates = 1
-let g:gist_post_private = 1
+let g:gista#github_user = 'phero'
 
 "--------------------------------------------------------------------------------------------------
 "   vim-flake8の設定
