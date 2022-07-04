@@ -107,6 +107,9 @@ eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# direnv
+eval "$(direnv hook zsh)"
+
 #
 #       Keymap
 #       cf. http://did2memo.net/2015/07/20/ubuntu-xkb-muhenkan-hotkey/
